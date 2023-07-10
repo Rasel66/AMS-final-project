@@ -4,8 +4,7 @@ const Enrollment = require('../models/Enrollment.model');
 const Student1 = require('../models/Student1.model');
 
 exports.getRegistrationPage = async (req, res) => {
-    console.log(req.session.teacher_id);
-    res.render('student/student-registration', { title: 'Home Page', message: "", layout: './layouts/teacher-dashboard-layout', teacher_id: req.session.teacher_id });
+    res.render('student/student-registration', { title: 'Home Page', message: "", layout: false });
 };
 
 
@@ -89,7 +88,7 @@ exports.postRegistrationData = async (req, res) => {
         })
         newStudent.save()
             .then(student => {
-                res.render('student/student-registration', { message: 'Registration Successful!', layout: './layouts/teacher-dashboard-layout', teacher_id: req.session.teacher_id })
+                res.render('student/student-registration', { message: 'Registration Successful!', layout: false, teacher_id: req.session.teacher_id })
             })
             .catch(err => {
                 console.error(err)

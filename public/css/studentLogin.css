@@ -1,6 +1,4 @@
-body{
-    background: lightgray;
-}
+
 h3.mb-4.text-center {
     font-family: revert;
 }
@@ -48,4 +46,10 @@ a.right.pull-right {
 
  .login_style {
      margin: auto;
+ }
+ .login-form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
  }
