@@ -5,13 +5,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Student Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
   <style>
     body,
     html {
       width: 100%;
       height: 100vh;
       box-sizing: border-box;
-      overflow: hidden;
+      overflow: auto;
       background-color: white;
     }
 
@@ -28,17 +29,17 @@
     }
 
     ul li:hover {
-      background-color: #2a5f5f41;
+      background-color: #5baaaa89;
     }
 
-    .striped-list li:nth-child(even) {
+    .striped-list li:nth-child() {
       background-color: #3647503b;
     }
 
     .full-height {
       display: flex;
       flex-direction: column;
-      height: 100vh;
+      height: 105vh;
       overflow: hidden;
     }
   </style>
@@ -63,20 +64,24 @@
       <div class="col-md-3 p-md-0 full-height" style="background-color: #13313e;">
         <ul class="mb-0 list-unstyled striped-list">
           <li class="text-lg-right">
+            <i class="fa fa-address-book text-white" aria-hidden="true"></i>
             <a href="/course/all" class="text-decoration-none text-white">Courses</a>
           </li>
           <li class="text-lg-right ">
+            <i class="fa fa-pie-chart text-white" aria-hidden="true"></i>
             <a href="/attendance/all-courses" class="text-decoration-none text-white">Attendance</a>
           </li>
           <li class="text-lg-right">
+            <i class="fa fa-pencil-square-o text-white" aria-hidden="true"></i>
             <a href="/student/<%= student_id%>/edit" class="text-decoration-none text-white">Update Info</a>
           </li>
           <li class="text-lg-right">
+            <i class="fa fa-user text-white" aria-hidden="true"></i>
             <a href="/student/<%= student_id%>/profile" class="text-decoration-none text-white">Profile</a>
           </li>
         </ul>
       </div>
-      <div class="col-md-9 p-5 overflow-scroll" style="background: slategray;">
+      <div class="col-md-9 overflow-scroll" >
         <%- body %>
       </div>
     </div>
@@ -91,92 +96,3 @@
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,900&display=swap" rel="styleshee">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="/css/student_layout.css">
-  <title>Student Page</title>
-  <style>
-    thead tr th {
-    font-size: 19px;
-  }
-  tbody tr td a {
-    color: black;
-    text-decoration: none;
-  }
-  tbody tr td a:hover{
-    color: red;
-    text-decoration: none;
-  }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <div class="row header-top bg-dark">
-      <div class="col-lg-2">
-        <div class="logo text-white">
-          <h2><i>AMS</i></h2>
-        </div>
-      </div>
-      <div class="col-lg-10 d-flex justify-content-end align-items-center ">
-        <div class="text-white menu">
-          <ul>
-            <li class="text-lg-right text-white" style="list-style: none;"><a href="/course/all">Courses</a></li>
-            <li class="text-lg-right text-white" style="list-style: none;"><a href="/attendance/all-courses">Attendance</a></li>
-            <li class="text-lg-right text-white" style="list-style: none;"><a href="/course/setmarks">Enrolled Courses</a></li>
-            <li class="text-lg-right text-white" style="list-style: none;"><a href="/student/<%= student_id%>/edit">Profile</a></li>
-          </ul>
-        </div>
-        <div class="logout">
-          <h6 class="text-end"><a class="btn btn-danger" href="/student/logout">Logout</a></h6>
-        </div>
-      </div>
-    </div>
-    <div class="row p-2 d-flex justify-content-center" style="background-color: darkgray;">
-      <div class="dashboard-text">
-        <h4>Student Dashboard</h4>
-      </div>
-    </div>
-    <div class="row p-2 d-flex justify-content-center" style="height: 490px;">
-      <div class="content col-md-12 bg-light p-3">
-        <%- body %>
-      </div>
-    </div>
-  </div>
-</body>
-
-</html> -->

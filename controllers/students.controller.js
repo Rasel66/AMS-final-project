@@ -74,9 +74,9 @@ exports.getDashboard = (req, res) => {
 
 
 exports.postRegistrationData = async (req, res) => {
-    const { student_id, name, email, password } = req.body
+    const { student_id, name, email, phone, session, password, address } = req.body
 
-    if (!student_id || !name || !email || !password) {
+    if (!student_id || !name || !session || !email || !password || !phone || !address) {
         return res.status(400).json({ message: 'Please provide all required fields' })
     }
 
@@ -89,7 +89,10 @@ exports.postRegistrationData = async (req, res) => {
             student_id,
             name,
             email,
-            password
+            phone,
+            session,
+            password,
+            address
         })
         newStudent.save()
             .then(student => {
@@ -177,7 +180,7 @@ exports.updateStudent = async (req, res) => {
         }
         const imageFile = req.files && req.files.image;
         console.log(imageFile);
-        imageFile.mv(`uploads/${imageFile.name}`, (error) => {
+        imageFile.mv(`public/uploads/${imageFile.name}`, (error) => {
             if (error) {
               console.error('Error saving the file:', error);
               //return res.redirect('/students'); // Redirect to an error page or student list

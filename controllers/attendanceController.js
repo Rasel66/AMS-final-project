@@ -183,7 +183,7 @@ exports.showCourseAttendance = async (req, res) => {
 
         allStudents = allStudents.map(enrollment => enrollment.student_id);
         console.log(allStudents);
-        const output = allStudents.map(student => {
+        let output1 = allStudents.map(student => {
             const result = populatedResults.find(res => res._id.toString() === student._id.toString());
             if (result) {
                 return result;
@@ -196,16 +196,17 @@ exports.showCourseAttendance = async (req, res) => {
                 return newstd;
             }
         });
-        //console.log(output);
 
-    
-        
+        //my marks
+        const output = output1.filter(obj => obj._id.toString() === req.session.student_id.toString());
+        const course_name = await Course1.findOne({_id:course_id});
+       // console.log(course_name.name);
 
         if (req.session.student_email) {
-            res.render('student/course-attendance', { layout: './layouts/student', student_id: req.session.student_id, results: output,total_class });
+            res.render('student/course-attendance', { layout: './layouts/student', student_id: req.session.student_id, results: output,total_class ,course_name:course_name.name});
         }
         else {
-            res.render('student/course-attendance', { layout: './layouts/teacher-dashboard-layout', teacher_id: req.session.teacher_id, results: output , total_class});
+            res.render('student/course-attendance', { layout: './layouts/teacher-dashboard-layout', teacher_id: req.session.teacher_id, results: output , total_class,course_name:course_name.name});
         }
 
     } catch (error) {
