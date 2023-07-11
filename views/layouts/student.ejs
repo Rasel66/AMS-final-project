@@ -60,7 +60,7 @@
       </div>
     </div>
     <div class="row overflow-hidden">
-      <div class="col-md-3 p-md-0 full-height" style="background-color: #222D32;">
+      <div class="col-md-3 p-md-0 full-height" style="background-color: #13313e;">
         <ul class="mb-0 list-unstyled striped-list">
           <li class="text-lg-right">
             <a href="/course/all" class="text-decoration-none text-white">Courses</a>
@@ -69,11 +69,14 @@
             <a href="/attendance/all-courses" class="text-decoration-none text-white">Attendance</a>
           </li>
           <li class="text-lg-right">
-            <a href="/student/<%= student_id%>/edit" class="text-decoration-none text-white">Profile</a>
+            <a href="/student/<%= student_id%>/edit" class="text-decoration-none text-white">Update Info</a>
+          </li>
+          <li class="text-lg-right">
+            <a href="/student/<%= student_id%>/profile" class="text-decoration-none text-white">Profile</a>
           </li>
         </ul>
       </div>
-      <div class="col-md-9 p-5 overflow-scroll text-white" style="background: slategray;">
+      <div class="col-md-9 p-5 overflow-scroll" style="background: slategray;">
         <%- body %>
       </div>
     </div>

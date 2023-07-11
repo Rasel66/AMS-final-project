@@ -19,7 +19,8 @@ const port = 3001;
 // Middleware and configurations
 app.use(expressLayouts);
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static('public'));
+//app.use(express.static('public'));
+app.use(express.static('uploads'));
 app.use(fileUpload());
 
 app.set('view engine', 'ejs');

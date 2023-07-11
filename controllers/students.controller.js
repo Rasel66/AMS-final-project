@@ -1,3 +1,8 @@
+const express = require('express');
+const fileUpload = require('express-fileupload');
+const app = express();
+app.use(fileUpload());
+
 const mongoose = require('mongoose');
 const { getAllCourse, Course1 } = require('../models/Course1.model');
 const Enrollment = require('../models/Enrollment.model');
@@ -147,6 +152,21 @@ exports.editStudent = async (req, res) => {
     }
 };
 
+exports.profile = async (req, res) => {
+    try {
+        const student = await Student1.findOne({ _id: req.params.id });
+        if (!student) {
+            res.status(404).send('Student not found');
+            return;
+        }
+        // Render the update form with the student data
+        res.render('student/student-profile', { student, layout: './layouts/student', student_id: req.params.id });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Internal server error');
+    }
+};
+
 
 exports.updateStudent = async (req, res) => {
     try {
@@ -155,8 +175,18 @@ exports.updateStudent = async (req, res) => {
             res.status(404).send('Student not found');
             return;
         }
+        const imageFile = req.files && req.files.image;
+        console.log(imageFile);
+        imageFile.mv(`uploads/${imageFile.name}`, (error) => {
+            if (error) {
+              console.error('Error saving the file:', error);
+              //return res.redirect('/students'); // Redirect to an error page or student list
+            }
+        });
+        
         student.student_id = req.body.student_id;
         student.name = req.body.name;
+        student.image = imageFile.name;
         await student.save();
         // Redirect to the student detail page
         res.send("change saved");
