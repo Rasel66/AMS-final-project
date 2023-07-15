@@ -170,6 +170,16 @@ exports.profile = async (req, res) => {
     }
 };
 
+// exports.calender = async (req, res) => {
+//     try {
+//         // Render the update form with the student data
+//         res.render('student/student-calender', { layout: './layouts/student', student_id: req.params.id });
+//     } catch (err) {
+//         console.error(err);
+//         res.status(500).send('Internal server error');
+//     }
+// };
+
 
 exports.updateStudent = async (req, res) => {
     try {

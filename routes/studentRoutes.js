@@ -1,5 +1,5 @@
 const express = require('express');
-const { getRegistrationPage, postRegistrationData, saveEnrollData, editStudent, updateStudent, getAllStudents, getLoginForm, loginStudent, logoutStudent, getDashboard, profile } = require('../controllers/students.controller');
+const { getRegistrationPage, postRegistrationData, saveEnrollData, editStudent, updateStudent, getAllStudents, getLoginForm, loginStudent, logoutStudent, getDashboard, profile, calender } = require('../controllers/students.controller');
 const app = express();
 const router = express.Router();
 const studentAuthMiddleware = require('../middlewares/studentAuthMiddleware');
@@ -78,6 +78,7 @@ router.post('/register', postRegistrationData)
 router.get('/enroll', saveEnrollData)
 router.get('/:id/edit', studentAuthMiddleware, editStudent)
 router.get('/:id/profile', studentAuthMiddleware, profile)
+// router.get('/:id/calender', studentAuthMiddleware, calender)
 router.post('/:id/update', studentAuthMiddleware, updateStudent)
 
 

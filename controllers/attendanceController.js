@@ -132,6 +132,37 @@ exports.showAllCourses = async (req, res) => {
         res.render('student/course-list-attendance', { layout: './layouts/teacher-dashboard-layout', teacher_id: req.session.teacher_id, courses });
     }
 }
+//get calender
+exports.getCalender = async (req, res) => {
+    // Generate sample data for student attendance
+    const attendanceData = {
+        '2023-07-02': 'present',
+        '2023-07-04': 'absent',
+        '2023-07-17': 'present',
+        '2023-07-20': 'absent'
+    };
+
+    // Generate an array of date objects for the current month
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
+    const currentMonth = currentDate.getMonth();
+    const firstDay = new Date(currentYear, currentMonth, 1);
+    const lastDay = new Date(currentYear, currentMonth + 1, 0);
+    const dates = [];
+
+    for (let d = new Date(firstDay); d <= lastDay; d.setDate(d.getDate() + 1)) {
+        const dateObj = {
+        date: d.getDate(),
+        formattedDate: d.toISOString().split('T')[0],
+        attendance: attendanceData[d.toISOString().split('T')[0]] || ''
+        };
+        dates.push(dateObj);
+    }
+
+
+    const course_id = req.params.course_id;
+    res.render('student/student-calender', {dates, layout: './layouts/student', student_id: req.session.student_id});
+}
 
 exports.showCourseAttendance = async (req, res) => {
     const course_id = req.params.course_id;
@@ -203,10 +234,10 @@ exports.showCourseAttendance = async (req, res) => {
        // console.log(course_name.name);
 
         if (req.session.student_email) {
-            res.render('student/course-attendance', { layout: './layouts/student', student_id: req.session.student_id, results: output,total_class ,course_name:course_name.name});
+            res.render('student/course-attendance', { layout: './layouts/student', student_id: req.session.student_id, results: output,total_class ,course_name:course_name.name,course_id});
         }
         else {
-            res.render('student/course-attendance', { layout: './layouts/teacher-dashboard-layout', teacher_id: req.session.teacher_id, results: output , total_class,course_name:course_name.name});
+            res.render('student/course-attendance', { layout: './layouts/teacher-dashboard-layout', teacher_id: req.session.teacher_id, results: output , total_class,course_name:course_name.name,course_id});
         }
 
     } catch (error) {
